@@ -80,7 +80,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #D4AF37;
         }
-        /* Custom styles for mini-game canvas interaction */
         #game-canvas {
             touch-action: none;
             cursor: pointer;
@@ -164,7 +163,7 @@
             <!-- VSL Section with YouTube Iframe -->
             <div class="max-w-4xl mx-auto mt-6">
                 <div class="student-hint bg-black/60 border border-brand-gold/30 p-2 rounded-t-lg text-xs text-brand-goldLight mb-1">
-                    📌 <strong>Video Preview Tip:</strong> Ο Μανώλης Ζουγανέλη εξηγεί τη φιλοσοφία ασφαλούς προπόνησης και πλάνα active drilling.
+                    📌 <strong>Video Preview Tip:</strong> Ο Μανώλης Ζουγανέλης εξηγεί τη φιλοσοφία ασφαλούς προπόνησης και πλάνα active drilling.
                 </div>
                 <div class="relative w-full aspect-video bg-black rounded-2xl border border-brand-gold/40 shadow-2xl overflow-hidden gold-border-glow">
                     <iframe 
@@ -187,7 +186,7 @@
                     </span>
                     <h3 class="text-xl sm:text-2xl font-black text-white">Sword Swallowing Challenge ⚔️</h3>
                     <p class="text-xs sm:text-sm text-gray-300 mt-1">
-                        Πάτα τη σωστή στιγμή για να καταπιείς το χρυσό σπαθί! Απέφυγε τις βόμβες και μάζεψε bonuses.
+                        Μετακίνησε τον Gladiator (Mouse / Touch) και πάτα κλικ για να καταπιείς τα χρυσά σπαθιά!
                     </p>
                 </div>
 
@@ -201,7 +200,7 @@
                             Ready to Swallow Steel?
                         </h4>
                         <p id="overlay-desc" class="text-xs sm:text-sm text-gray-300 max-w-md mb-6 leading-relaxed">
-                            Ευθυγράμμισε τη γωνία του σπαθιού με το λαιμό του gladiator. Timing is everything!
+                            Σύρε τον χαρακτήρα δεξιά-αριστερά για να ευθυγραμμιστείς με τα σπαθιά. Timing is everything!
                         </p>
                         <button id="start-game-btn" onclick="startSwordGame()" class="px-8 py-3.5 bg-gradient-to-r from-brand-goldLight via-brand-gold to-brand-goldHover text-black font-black text-base rounded-xl shadow-xl transform hover:scale-105 transition duration-200 border border-yellow-200">
                             ΕΝΑΡΞΗ ΠΑΙΧΝΙΔΙΟΥ <i class="fa-solid fa-play ml-2"></i>
@@ -380,7 +379,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-3 text-brand-goldLight font-bold text-sm sm:text-base">
                 <i class="fa-solid fa-triangle-exclamation text-brand-gold animate-bounce"></i>
-                <span>⚠️ ΠΡΟΣΟΧΗ: ΑΠΟΜΕΝΟΥΝ ΜΟΝΟ 10 ΘΕΣΕΙΣ ΓΙΑ ΤΟ FOUNDING COHORT ΟΚΤΩΒΡΙΟΥ ΣТО ΗΡΑΚΛΕΙΟ</span>
+                <span>⚠️ ΠΡΟΣΟΧΗ: ΑΠΟΜΕΝΟΥΝ ΜΟΝΟ 10 ΘΕΣΕΙΣ ΓΙΑ ΤΟ FOUNDING COHORT ΟΚΤΩΒΡΙΟΥ ΣΤΟ ΗΡΑΚΛΕΙΟ</span>
             </div>
         </div>
     </section>
@@ -756,7 +755,7 @@
         }
 
         /* ----------------------------------------------------
-           SWORD SWALLOWER MINI-GAME ENGINE
+           SWORD SWALLOWER MINI-GAME ENGINE (WITH MOVEMENT)
         ---------------------------------------------------- */
         const canvas = document.getElementById('game-canvas');
         const ctx = canvas.getContext('2d');
@@ -768,29 +767,23 @@
         const highscoreEl = document.getElementById('game-highscore');
         const livesEl = document.getElementById('game-lives');
 
-        let gameState = 'STOPPED'; // 'STOPPED', 'RUNNING', 'GAMEOVER'
+        let gameState = 'STOPPED';
         let score = 0;
         let highScore = localStorage.getItem('morto_sword_highscore') || 0;
         let lives = 3;
-        let animationFrameId;
 
-        // Player / Gladiator settings
+        // Player / Gladiator settings with smooth position tracking
         const player = {
             x: 300,
+            targetX: 300,
             y: 220,
-            mouthX: 300,
-            mouthY: 190,
-            mouthRadius: 18,
-            headAngle: 0,
             swallowingProgress: 0
         };
 
-        // Falling items array
         let items = [];
         let lastSpawn = 0;
-        let spawnInterval = 1000; // ms
+        let spawnInterval = 1000;
 
-        // Audio Effects (Web Audio API synth-based)
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
         function playSound(type) {
@@ -829,17 +822,36 @@
             lives = 3;
             items = [];
             spawnInterval = 1000;
+            player.x = 300;
+            player.targetX = 300;
             scoreEl.textContent = score;
             updateLivesUI();
 
             overlay.classList.add('hidden');
 
-            // Attach canvas listeners
+            // Track movement (Mouse & Touch)
+            canvas.removeEventListener('pointermove', handleMove);
+            canvas.addEventListener('pointermove', handleMove);
+
+            // Track swallow trigger (Click / Tap)
             canvas.removeEventListener('pointerdown', handleTap);
             canvas.addEventListener('pointerdown', handleTap);
 
             lastSpawn = performance.now();
             requestAnimationFrame(gameLoop);
+        }
+
+        function handleMove(e) {
+            if (gameState !== 'RUNNING') return;
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
+            player.targetX = Math.max(40, Math.min(canvas.width - 40, mouseX));
+        }
+
+        function handleTap(e) {
+            if (gameState !== 'RUNNING') return;
+            handleMove(e);
+            player.swallowingProgress = 1.0;
         }
 
         function updateLivesUI() {
@@ -862,10 +874,10 @@
 
             const rand = Math.random();
             let selected = types[0];
-            if (rand > 0.7) selected = types[1];
-            if (rand > 0.85) selected = types[2];
+            if (rand > 0.65) selected = types[1];
+            if (rand > 0.82) selected = types[2];
 
-            const x = Math.random() * (canvas.width - 60) + 30;
+            const x = Math.random() * (canvas.width - 80) + 40;
             items.push({
                 x: x,
                 y: -60,
@@ -874,58 +886,8 @@
                 length: selected.length,
                 speed: selected.speed,
                 points: selected.points,
-                angle: (Math.random() - 0.5) * 0.2 // slight tilt
+                angle: (Math.random() - 0.5) * 0.15
             });
-        }
-
-        function handleTap(e) {
-            if (gameState !== 'RUNNING') return;
-            
-            // Check collision on tap
-            const rect = canvas.getBoundingClientRect();
-            const tapX = (e.clientX - rect.left) * (canvas.width / rect.width);
-            const tapY = (e.clientY - rect.top) * (canvas.height / rect.height);
-
-            // Trigger swallow mouth action
-            player.swallowingProgress = 1.0;
-
-            // Check if any item tip is near the mouth
-            for (let i = items.length - 1; i >= 0; i--) {
-                const item = items[i];
-                const itemTipY = item.y + item.length;
-                const dist = Math.hypot(item.x - player.mouthX, itemTipY - player.mouthY);
-
-                if (dist < 38) { // Collision radius
-                    if (item.type === 'BOMB') {
-                        playSound('hit');
-                        lives--;
-                        updateLivesUI();
-                        createParticles(item.x, itemTipY, '#EF4444');
-                        items.splice(i, 1);
-                        if (lives <= 0) gameOver();
-                    } else {
-                        playSound('swallow');
-                        score += item.points;
-                        scoreEl.textContent = score;
-                        createParticles(item.x, itemTipY, '#FFD700');
-                        items.splice(i, 1);
-
-                        // Increase difficulty slightly
-                        if (spawnInterval > 400) spawnInterval -= 15;
-                    }
-                    break;
-                }
-            }
-        }
-
-        function createParticles(x, y, color) {
-            // Visual feedback burst
-            for (let i = 0; i < 8; i++) {
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                ctx.arc(x + (Math.random() - 0.5) * 20, y + (Math.random() - 0.5) * 20, 3, 0, Math.PI * 2);
-                ctx.fill();
-            }
         }
 
         function gameOver() {
@@ -949,7 +911,10 @@
             ctx.fillStyle = '#08080C';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Draw Background Grids/Glow
+            // Smooth Movement Lerp
+            player.x += (player.targetX - player.x) * 0.25;
+
+            // Background Grid
             ctx.strokeStyle = 'rgba(212, 175, 55, 0.05)';
             ctx.lineWidth = 1;
             for (let i = 0; i < canvas.width; i += 40) {
@@ -965,18 +930,20 @@
                 lastSpawn = now;
             }
 
+            const mouthX = player.x;
+            const mouthY = player.y - 20;
+
             // Update & Render Items
             for (let i = items.length - 1; i >= 0; i--) {
                 const item = items[i];
                 item.y += item.speed;
 
-                // Draw Sword / Bomb
+                // Draw Item
                 ctx.save();
                 ctx.translate(item.x, item.y);
                 ctx.rotate(item.angle);
 
                 if (item.type === 'BOMB') {
-                    // Bomb Body
                     ctx.fillStyle = '#111';
                     ctx.strokeStyle = '#EF4444';
                     ctx.lineWidth = 2;
@@ -985,22 +952,19 @@
                     ctx.fill();
                     ctx.stroke();
 
-                    // Fuse
                     ctx.fillStyle = '#FFD700';
                     ctx.fillRect(-2, -18, 4, 6);
                 } else {
-                    // Golden Sword Blade
                     ctx.fillStyle = item.color;
                     ctx.beginPath();
                     ctx.moveTo(-3, 0);
                     ctx.lineTo(3, 0);
                     ctx.lineTo(1, item.length);
-                    ctx.lineTo(0, item.length + 5); // Tip
+                    ctx.lineTo(0, item.length + 5);
                     ctx.lineTo(-1, item.length);
                     ctx.closePath();
                     ctx.fill();
 
-                    // Sword Guard / Hilt
                     ctx.fillStyle = '#FFFFFF';
                     ctx.fillRect(-10, -4, 20, 4);
                     ctx.fillStyle = '#D4AF37';
@@ -1008,6 +972,27 @@
                 }
 
                 ctx.restore();
+
+                // Collision Detection with Mouth
+                const itemTipY = item.y + item.length;
+                const dist = Math.hypot(item.x - mouthX, itemTipY - mouthY);
+
+                if (dist < 32) {
+                    if (item.type === 'BOMB') {
+                        playSound('hit');
+                        lives--;
+                        updateLivesUI();
+                        items.splice(i, 1);
+                        if (lives <= 0) gameOver();
+                    } else {
+                        playSound('swallow');
+                        score += item.points;
+                        scoreEl.textContent = score;
+                        items.splice(i, 1);
+                        if (spawnInterval > 400) spawnInterval -= 15;
+                    }
+                    continue;
+                }
 
                 // Missed Item check
                 if (item.y > canvas.height + 20) {
@@ -1020,18 +1005,17 @@
                 }
             }
 
-            // Draw Gladiator / Player Swallow Target
+            // Draw Gladiator Player
             ctx.save();
             ctx.translate(player.x, player.y);
 
-            // Mouth animation
-            let mouthGap = 12;
+            let mouthGap = 8;
             if (player.swallowingProgress > 0) {
-                mouthGap = 24 * player.swallowingProgress;
+                mouthGap = 26 * player.swallowingProgress;
                 player.swallowingProgress -= 0.08;
             }
 
-            // Head Aura / Glow
+            // Aura
             const gradient = ctx.createRadialGradient(0, -30, 5, 0, -30, 40);
             gradient.addColorStop(0, 'rgba(212, 175, 55, 0.25)');
             gradient.addColorStop(1, 'transparent');
@@ -1040,7 +1024,7 @@
             ctx.arc(0, -30, 40, 0, Math.PI * 2);
             ctx.fill();
 
-            // Head Structure
+            // Head
             ctx.fillStyle = '#111622';
             ctx.strokeStyle = '#D4AF37';
             ctx.lineWidth = 2.5;
@@ -1049,21 +1033,21 @@
             ctx.fill();
             ctx.stroke();
 
-            // Eyes (Gold Gladiator Mask)
+            // Eyes
             ctx.fillStyle = '#FFD700';
             ctx.fillRect(-12, -38, 8, 4);
             ctx.fillRect(4, -38, 8, 4);
 
-            // Open Mouth (Swallow Zone)
+            // Mouth
             ctx.fillStyle = '#000000';
             ctx.strokeStyle = '#FFD700';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.ellipse(0, -20, 14, mouthGap / 2, 0, 0, Math.PI * 2);
+            ctx.ellipse(0, -20, 14, Math.max(4, mouthGap / 2), 0, 0, Math.PI * 2);
             ctx.fill();
             ctx.stroke();
 
-            // Shoulders / Gi Collar
+            // Shoulders
             ctx.fillStyle = '#030304';
             ctx.strokeStyle = '#22222A';
             ctx.lineWidth = 2;
@@ -1082,7 +1066,6 @@
             requestAnimationFrame(gameLoop);
         }
 
-        // Render initial static preview on canvas
         ctx.fillStyle = '#08080C';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = '#FFD700';
