@@ -20,14 +20,15 @@
                 extend: {
                     colors: {
                         brand: {
+                            pitchDark: '#05070A',
                             dark: '#0B0F17',
-                            card: '#131A27',
-                            border: '#1F293D',
+                            card: '#111622',
+                            border: '#1E2638',
                             gold: '#F59E0B',
+                            goldLight: '#FBBF24',
                             goldHover: '#D97706',
-                            cyan: '#06B6D4',
-                            accent: '#3B82F6',
-                            text: '#94A3B8'
+                            textMuted: '#94A3B8',
+                            pureWhite: '#FFFFFF'
                         }
                     },
                     fontFamily: {
@@ -49,8 +50,8 @@
     </script>
     <style>
         body {
-            background-color: #0B0F17;
-            color: #F3F4F6;
+            background-color: #05070A;
+            color: #FFFFFF;
             font-family: 'Inter', sans-serif;
         }
         .student-hint {
@@ -62,17 +63,17 @@
             -webkit-text-fill-color: transparent;
         }
         .gold-border-glow {
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
         }
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0B0F17;
+            background: #05070A;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1F293D;
+            background: #1E2638;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -80,10 +81,10 @@
         }
     </style>
 </head>
-<body class="antialiased text-gray-200 bg-brand-dark pb-20">
+<body class="antialiased text-white bg-brand-pitchDark pb-20">
 
     <!-- Top Bar Navigation / Toggle Hints -->
-    <div id="student-bar" class="sticky top-0 z-50 bg-slate-900/95 border-b border-amber-500/30 backdrop-blur-md px-4 py-3 shadow-2xl">
+    <div id="student-bar" class="sticky top-0 z-50 bg-black/95 border-b border-amber-500/30 backdrop-blur-md px-4 py-3 shadow-2xl">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/40">
@@ -95,11 +96,11 @@
             <div class="flex items-center space-x-4">
                 <label class="relative inline-flex items-center cursor-pointer select-none">
                     <input type="checkbox" id="toggle-hints" class="sr-only peer" checked onchange="toggleStudentHints()">
-                    <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
-                    <span class="ml-2.5 text-xs sm:text-sm font-medium text-gray-200">Copywriting Guidelines</span>
+                    <div class="w-11 h-6 bg-gray-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+                    <span class="ml-2.5 text-xs sm:text-sm font-medium text-gray-300">Copywriting Guidelines</span>
                 </label>
 
-                <button onclick="copyFullHTML()" class="px-3 py-1.5 bg-brand-border hover:bg-slate-700 text-xs text-amber-400 font-semibold rounded-lg border border-amber-500/30 transition duration-200 flex items-center space-x-1">
+                <button onclick="copyFullHTML()" class="px-3 py-1.5 bg-brand-card hover:bg-slate-800 text-xs text-amber-400 font-semibold rounded-lg border border-amber-500/30 transition duration-200 flex items-center space-x-1">
                     <i class="fa-regular fa-copy"></i>
                     <span class="hidden md:inline">Αντιγραφή HTML</span>
                 </button>
@@ -108,22 +109,22 @@
     </div>
 
     <!-- SECTION 1: HERO SECTION -->
-    <header class="relative overflow-hidden pt-8 pb-16 border-b border-brand-border">
+    <header class="relative overflow-hidden pt-8 pb-16 border-b border-brand-border bg-gradient-to-b from-black to-brand-pitchDark">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Student Hint Box -->
-            <div class="student-hint bg-amber-950/40 border-l-4 border-amber-500 p-4 mb-8 rounded-r-lg text-xs sm:text-sm text-amber-200">
+            <div class="student-hint bg-black/80 border-l-4 border-amber-500 p-4 mb-8 rounded-r-lg text-xs sm:text-sm text-amber-200 border-t border-b border-r border-amber-500/20">
                 <div class="font-bold flex items-center mb-1 text-amber-400">
                     <i class="fa-solid fa-lightbulb mr-2"></i> HERO SECTION COPYWRITING STRATEGY:
                 </div>
-                <p>Στοχεύουμε αθλητικούς ενήλικες (18-35) & φοιτητές στο Ηράκλειο[cite: 1, 3]. Απαντάμε αμέσως στον μεγαλύτερο φόβο (τραυματισμός, «με διαλύουν») με συγκεκριμένο μετασχηματισμό 30 ημερών[cite: 1, 4, 5].</p>
+                <p>Στοχεύουμε αθλητικούς ενήλικες (18-35) & φοιτητές στο Ηράκλειο. Απαντάμε αμέσως στον μεγαλύτερο φόβο (τραυματισμός, «με διαλύουν») με συγκεκριμένο μετασχηματισμό 30 ημερών.</p>
             </div>
 
             <!-- Top Announcement Badge -->
             <div class="text-center mb-6">
-                <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 rounded-full text-xs font-semibold text-amber-400 tracking-wide uppercase">
+                <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/40 px-4 py-1.5 rounded-full text-xs font-semibold text-amber-400 tracking-wide uppercase">
                     <span class="flex h-2 w-2 rounded-full bg-amber-400 animate-ping"></span>
                     <span>MORTO BJJ &bull; Katheto.gr &bull; ΜΟΝΟ 10 ΘΕΣΕΙΣ ΓΙΑ ΤΟΝ ΟΚΤΩΒΡΙΟ</span>
                 </div>
@@ -136,35 +137,39 @@
                 </h1>
 
                 <!-- Subheadline -->
-                <p class="text-lg sm:text-xl text-gray-300 font-normal mb-6 max-w-3xl mx-auto leading-relaxed">
+                <p class="text-lg sm:text-xl text-gray-200 font-normal mb-6 max-w-3xl mx-auto leading-relaxed">
                     Χωρίς τραυματισμούς, χωρίς να νιώθεις εκτός τόπου. Το πρώτο δομημένο πρόγραμμα Brazilian Jiu-Jitsu στο Ηράκλειο, σχεδιασμένο ειδικά για αθλητικούς αρχάριους.
                 </p>
 
                 <!-- Detailed Mechanism Paragraph -->
                 <p class="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-                    12 εξειδικευμένες προπονήσεις[cite: 1, 5], ασφαλές κλιμακούμενο sparring[cite: 5], πρόσβαση στην Online Ακαδημία[cite: 6] και εβδομαδιαίο Q&A με τον Head Coach Μανώλη Ζουγανέλη (μαύρη ζώνη)[cite: 1, 6].
+                    12 εξειδικευμένες προπονήσεις, ασφαλές κλιμακούμενο sparring, πρόσβαση στην Online Ακαδημία και εβδομαδιαίο Q&A με τον Head Coach Μανώλη Ζουγανέλη (μαύρη ζώνη).
                 </p>
 
-                <!-- Primary CTA Button -->
+                <!-- Primary CTA Button (Google Calendar Link) -->
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-                    <button onclick="openModal()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-lg rounded-xl shadow-lg shadow-amber-500/20 transform hover:-translate-y-0.5 transition duration-200 flex items-center justify-center space-x-2">
+                    <a href="https://calendar.app.google/nR5ema51rURQ9ZBdA" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-black text-lg rounded-xl shadow-xl shadow-amber-500/20 transform hover:-translate-y-0.5 transition duration-200 flex items-center justify-center space-x-2 border border-amber-300">
                         <span>Διεκδίκησε 1 από τις 10 Θέσεις</span>
                         <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
 
-            <!-- VSL Placeholder -->
+            <!-- VSL Section with YouTube Iframe -->
             <div class="max-w-4xl mx-auto mt-6">
-                <div class="student-hint bg-amber-950/30 border border-amber-500/30 p-2 rounded-t-lg text-xs text-amber-300 mb-1">
-                    📌 <strong>Video Preview Tip:</strong> Βίντεο με τον Μανώλη Ζουγανέλη να εξηγεί τη φιλοσοφία ασφαλούς προπόνησης και πλάνα active drilling[cite: 2, 12].
+                <div class="student-hint bg-black/60 border border-amber-500/30 p-2 rounded-t-lg text-xs text-amber-300 mb-1">
+                    📌 <strong>Video Preview Tip:</strong> Ο Μανώλης Ζουγανέλης εξηγεί τη φιλοσοφία ασφαλούς προπόνησης και πλάνα active drilling.
                 </div>
-                <div class="relative w-full aspect-video bg-brand-card rounded-2xl border border-brand-border shadow-2xl flex flex-col items-center justify-center p-6 text-center group hover:border-amber-500/40 transition duration-300">
-                    <div class="w-20 h-20 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition duration-300 cursor-pointer" onclick="openModal()">
-                        <i class="fa-solid fa-play text-2xl ml-1"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-1">Δες πώς παίζουμε σκληρά χωρίς να τραυματιζόμαστε στο Morto BJJ</h3>
-                    <p class="text-xs text-gray-400">[Πάτα για να δεις τη μέθοδο διδασκαλίας & τις εγκαταστάσεις στο κέντρο του Ηρακλείου]</p>
+                <div class="relative w-full aspect-video bg-black rounded-2xl border border-amber-500/40 shadow-2xl overflow-hidden gold-border-glow">
+                    <iframe 
+                        class="w-full h-full rounded-2xl" 
+                        src="https://www.youtube.com/embed/4I_MW18K2Hs?si=o7_m7BOs7dtU1-jF" 
+                        title="Morto BJJ Video Presentation" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
 
@@ -172,50 +177,50 @@
     </header>
 
     <!-- SECTION 2: BRAND LOGOS & ACCREDITATIONS -->
-    <section class="py-10 border-b border-brand-border bg-slate-950/50">
+    <section class="py-10 border-b border-brand-border bg-black">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <p class="text-center text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">
                 ΔΙΕΘΝΗΣ ΠΑΡΟΥΣΙΑ & ΔΙΑΚΡΙΣΕΙΣ ΥΨΗΛΟΥ ΕΠΙΠΕΔΟΥ
             </p>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-80 grayscale hover:grayscale-0 transition duration-300">
-                <div class="border border-dashed border-gray-700 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center">
-                    <i class="fa-solid fa-trophy mr-2"></i>50+ Διεθνή Μετάλλια
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-90">
+                <div class="border border-amber-500/30 bg-brand-card/50 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center shadow-lg">
+                    <i class="fa-solid fa-trophy mr-2 text-amber-500"></i>50+ Διεθνή Μετάλλια
                 </div>
-                <div class="border border-dashed border-gray-700 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center">
-                    <i class="fa-solid fa-globe mr-2"></i>AJP Tour & IBJJF
+                <div class="border border-amber-500/30 bg-brand-card/50 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center shadow-lg">
+                    <i class="fa-solid fa-globe mr-2 text-amber-500"></i>AJP Tour & IBJJF
                 </div>
-                <div class="border border-dashed border-gray-700 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center">
-                    <i class="fa-solid fa-certificate mr-2"></i>4th Degree Black Belt Approved
+                <div class="border border-amber-500/30 bg-brand-card/50 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center shadow-lg">
+                    <i class="fa-solid fa-certificate mr-2 text-amber-500"></i>4th Degree Black Belt Approved
                 </div>
-                <div class="border border-dashed border-gray-700 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center">
-                    <i class="fa-solid fa-star mr-2"></i>98% Σύσταση (42+ Reviews)
+                <div class="border border-amber-500/30 bg-brand-card/50 px-6 py-3 rounded-lg text-sm text-amber-400 font-bold w-full text-center shadow-lg">
+                    <i class="fa-solid fa-star mr-2 text-amber-500"></i>98% Σύσταση (42+ Reviews)
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SECTION 3: OFFER STACK & PRICING MATRIX -->
-    <section class="py-20 border-b border-brand-border relative">
+    <section class="py-20 border-b border-brand-border bg-brand-pitchDark relative">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <div class="student-hint bg-amber-950/40 border-l-4 border-amber-500 p-4 mb-10 rounded-r-lg text-xs sm:text-sm text-amber-200">
+            <div class="student-hint bg-black/80 border-l-4 border-amber-500 p-4 mb-10 rounded-r-lg text-xs sm:text-sm text-amber-200 border-t border-b border-r border-amber-500/20">
                 <div class="font-bold flex items-center mb-1 text-amber-400">
                     <i class="fa-solid fa-layer-group mr-2"></i> OFFER STACKING:
                 </div>
-                <p>Δίνουμε την επιλογή μεταξύ του standard **Foundations 30** (€69)[cite: 1, 5] και του **Student Semester** (€169)[cite: 7] για φοιτητές που θέλουν να δεσμευτούν για ολόκληρο το εξάμηνο[cite: 7].</p>
+                <p>Δίνουμε την επιλογή μεταξύ του standard **Foundations 30** (€69) και του **Student Semester** (€169) για φοιτητές που θέλουν να δεσμευτούν για ολόκληρο το εξάμηνο.</p>
             </div>
 
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-4">
                     Το Πλήρες Πακέτο <span class="gold-gradient-text">Morto Foundations 30</span>
                 </h2>
-                <p class="text-gray-400 text-base sm:text-lg">
+                <p class="text-gray-300 text-base sm:text-lg">
                     Όλα όσα χρειάζεσαι για να ξεκινήσεις Brazilian Jiu-Jitsu με ασφάλεια, δομή και σωστή τεχνική βάση.
                 </p>
 
-                <div class="mt-8 inline-flex items-center bg-brand-card p-1.5 rounded-xl border border-brand-border">
-                    <button id="billing-one-time" onclick="setBilling('one-time')" class="px-5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all duration-200 bg-amber-500 text-slate-950">
+                <div class="mt-8 inline-flex items-center bg-black p-1.5 rounded-xl border border-brand-border">
+                    <button id="billing-one-time" onclick="setBilling('one-time')" class="px-5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all duration-200 bg-amber-500 text-black">
                         Foundations 30 (30 Ημέρες)
                     </button>
                     <button id="billing-monthly" onclick="setBilling('monthly')" class="px-5 py-2 text-xs sm:text-sm font-bold rounded-lg text-gray-400 hover:text-white transition-all duration-200">
@@ -228,7 +233,7 @@
             <div class="grid lg:grid-cols-12 gap-8 items-start">
                 
                 <!-- Main Offer Breakdown (7 cols) -->
-                <div class="lg:col-span-7 bg-brand-card rounded-2xl p-6 sm:p-8 border border-brand-border shadow-xl">
+                <div class="lg:col-span-7 bg-brand-card rounded-2xl p-6 sm:p-8 border border-brand-border shadow-2xl">
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-800">
                         <div>
                             <span class="text-xs font-bold text-amber-400 tracking-wider uppercase">ΠΡΟΓΡΑΜΜΑ ΑΡΧΑΡΙΩΝ</span>
@@ -241,76 +246,76 @@
                         </div>
                     </div>
 
-                    <p class="text-xs sm:text-sm text-gray-300 font-semibold mb-4">ΤΙ ΠΕΡΙΛΑΜΒΑΝΕΤΑΙ ΣΤΟ ΠΑΚΕΤΟ:</p>
-                    <ul id="deliverables-list" class="space-y-3 text-sm text-gray-300 mb-8">
+                    <p class="text-xs sm:text-sm text-white font-semibold mb-4">ΤΙ ΠΕΡΙΛΑΜΒΑΝΕΤΑΙ ΣΤΟ ΠΑΚΕΤΟ:</p>
+                    <ul id="deliverables-list" class="space-y-3 text-sm text-gray-200 mb-8">
                         <li class="flex items-start">
                             <i class="fa-solid fa-circle-check text-amber-400 mt-1 mr-3 flex-shrink-0"></i>
-                            <span><strong>12 Προπονήσεις Foundations:</strong> 3 προπονήσεις/εβδομάδα με το επίσημο curriculum της ακαδημίας (Αξία €70)[cite: 1, 5, 6].</span>
+                            <span><strong>12 Προπονήσεις Foundations:</strong> 3 προπονήσεις/εβδομάδα με το επίσημο curriculum της ακαδημίας (Αξία €70).</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa-solid fa-circle-check text-amber-400 mt-1 mr-3 flex-shrink-0"></i>
-                            <span><strong>Δανεικός Εξοπλισμός (Gi / Rashguard):</strong> Μηδενικό αρχικό κόστος εξοπλισμού για τις πρώτες σας προπονήσεις (Αξία €30)[cite: 6].</span>
+                            <span><strong>Δανεικός Εξοπλισμός (Gi / Rashguard):</strong> Μηδενικό αρχικό κόστος εξοπλισμού για τις πρώτες σας προπονήσεις (Αξία €30).</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa-solid fa-circle-check text-amber-400 mt-1 mr-3 flex-shrink-0"></i>
-                            <span><strong>Δωρεάν Πρώτη Δοκιμαστική Προπόνηση:</strong> Αξιολόγηση αθλητικής ετοιμότητας και γνωριμία με την ομάδα (Αξία €15)[cite: 1, 5, 6].</span>
+                            <span><strong>Δωρεάν Πρώτη Δοκιμαστική Προπόνηση:</strong> Αξιολόγηση αθλητικής ετοιμότητας και γνωριμία με την ομάδα (Αξία €15).</span>
                         </li>
                     </ul>
 
                     <!-- Bonus Stack Subsection -->
-                    <div class="bg-slate-950/60 p-5 rounded-xl border border-amber-500/20">
+                    <div class="bg-black/80 p-5 rounded-xl border border-amber-500/30">
                         <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm mb-3">
                             <i class="fa-solid fa-gift"></i>
                             <span>INCLUDED BONUSES (ΔΩΡΕΑΝ ΜΕ ΤΗΝ ΕΓΓΡΑΦΗ):</span>
                         </div>
-                        <ul id="bonus-list" class="space-y-2.5 text-xs sm:text-sm text-gray-300">
+                        <ul id="bonus-list" class="space-y-2.5 text-xs sm:text-sm text-gray-200">
                             <li class="flex items-start">
                                 <span class="text-amber-400 font-bold mr-2">🎁 Bonus #1:</span>
-                                <span><strong>«Ώρα του Ζου»:</strong> Εβδομαδιαίο ομαδικό Q&A 30' με τον Head Coach Μανώλη Ζουγανέλη μετά το μάθημα (Αξία €40)[cite: 6].</span>
+                                <span><strong>«Ώρα του Ζου»:</strong> Εβδομαδιαίο ομαδικό Q&A 30' με τον Head Coach Μανώλη Ζουγανέλη μετά το μάθημα (Αξία €40).</span>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-amber-400 font-bold mr-2">🎁 Bonus #2:</span>
-                                <span><strong>Πρόσβαση στην Online Academy:</strong> Βίντεο τεχνικών για μελέτη στο σπίτι (Αξία €25)[cite: 6].</span>
+                                <span><strong>Πρόσβαση στην Online Academy:</strong> Βίντεο τεχνικών για μελέτη στο σπίτι (Αξία €25).</span>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-amber-400 font-bold mr-2">🎁 Bonus #3:</span>
-                                <span><strong>Πρωτόκολλο Ασφαλείας Morto:</strong> Ειδικός οδηγός πρόληψης τραυματισμών και κανόνες tap (Αξία €15)[cite: 6].</span>
+                                <span><strong>Πρωτόκολλο Ασφαλείας Morto:</strong> Ειδικός οδηγός πρόληψης τραυματισμών και κανόνες tap (Αξία €15).</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Callout Box & Quick Checkout (5 cols) -->
-                <div class="lg:col-span-5 bg-gradient-to-b from-brand-card to-slate-950 rounded-2xl p-6 sm:p-8 border border-amber-500/30 gold-border-glow flex flex-col justify-between h-full">
+                <div class="lg:col-span-5 bg-gradient-to-b from-brand-card to-black rounded-2xl p-6 sm:p-8 border border-amber-500/40 gold-border-glow flex flex-col justify-between h-full">
                     <div>
                         <div class="inline-block bg-amber-500/10 text-amber-400 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-4 border border-amber-500/30">
                             ΠΕΡΙΟΡΙΣΜΕΝΗ ΔΙΑΘΕΣΙΜΟΤΗΤΑ
                         </div>
                         <h4 class="text-xl font-bold text-white mb-2">10 Θέσεις ανά Κύκλο</h4>
                         <p class="text-xs sm:text-sm text-gray-300 mb-6 leading-relaxed">
-                            Κρατάμε τα τμήματαFoundations μικρά για να εξασφαλίσουμε προσωπική προσοχή και μηδενικούς τραυματισμούς[cite: 1, 4, 6].
+                            Κρατάμε τα τμήματα Foundations μικρά για να εξασφαλίσουμε προσωπική προσοχή και μηδενικούς τραυματισμούς.
                         </p>
 
-                        <div class="space-y-3 mb-8 text-xs text-gray-400 border-t border-b border-gray-800 py-4">
+                        <div class="space-y-3 mb-8 text-xs text-gray-300 border-t border-b border-gray-800 py-4">
                             <div class="flex justify-between">
                                 <span>Στόχος Ημέρας 30:</span>
-                                <span class="text-white font-medium">5 γύροι rolling x 5'[cite: 1, 5]</span>
+                                <span class="text-amber-400 font-medium">5 γύροι rolling x 5'</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Συχνότητα:</span>
-                                <span class="text-white font-medium">3 προπονήσεις / εβδομάδα[cite: 5]</span>
+                                <span class="text-white font-medium">3 προπονήσεις / εβδομάδα</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Εγγύηση:</span>
-                                <span class="text-amber-400 font-medium">12 Προπονήσεις / Δωρεάν +2 εβδ.[cite: 6]</span>
+                                <span class="text-amber-400 font-medium">12 Προπονήσεις / Δωρεάν +2 εβδ.</span>
                             </div>
                         </div>
                     </div>
 
-                    <button onclick="openModal()" class="w-full py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-base rounded-xl shadow-lg transition duration-200 text-center flex items-center justify-center space-x-2">
+                    <a href="https://calendar.app.google/nR5ema51rURQ9ZBdA" target="_blank" rel="noopener noreferrer" class="w-full py-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-black text-base rounded-xl shadow-lg transition duration-200 text-center flex items-center justify-center space-x-2 border border-amber-300">
                         <span>ΚΑΝΕ ΑΙΤΗΣΗ ΓΙΑ ΔΟΚΙΜΑΣΤΙΚΟ</span>
                         <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    </a>
                 </div>
 
             </div>
@@ -318,42 +323,42 @@
     </section>
 
     <!-- SECTION 4: SCARCITY BANNER -->
-    <section class="py-6 bg-amber-500/10 border-y border-amber-500/30">
+    <section class="py-6 bg-black border-y border-amber-500/40">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-3 text-amber-300 font-bold text-sm sm:text-base">
                 <i class="fa-solid fa-triangle-exclamation text-amber-400 animate-bounce"></i>
-                <span>⚠️ ΠΡΟΣΟΧΗ: ΑΠΟΜΕΝΟΥΝ ΜΟΝΟ 10 ΘΕΣΕΙΣ ΓΙΑ ΤΟ FOUNDING COHORT ΟΚΤΩΒΡΙΟΥ ΣΤΟ ΗΡΑΚΛΕΙΟ[cite: 1, 6]</span>
+                <span>⚠️ ΠΡΟΣΟΧΗ: ΑΠΟΜΕΝΟΥΝ ΜΟΝΟ 10 ΘΕΣΕΙΣ ΓΙΑ ΤΟ FOUNDING COHORT ΟΚΤΩΒΡΙΟΥ ΣΤΟ ΗΡΑΚΛΕΙΟ</span>
             </div>
         </div>
     </section>
 
     <!-- SECTION 5: METRICS & PROOF -->
-    <section class="py-20 border-b border-brand-border bg-slate-950/30">
+    <section class="py-20 border-b border-brand-border bg-black">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                 
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border shadow-xl">
                     <div class="text-3xl sm:text-4xl font-black text-amber-400 mb-1">12</div>
                     <div class="text-xs sm:text-sm font-semibold text-white mb-1">Προπονήσεις</div>
-                    <div class="text-xs text-gray-400">σε 30 Ημέρες[cite: 1, 5]</div>
+                    <div class="text-xs text-gray-400">σε 30 Ημέρες</div>
                 </div>
 
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
-                    <div class="text-3xl sm:text-4xl font-black text-cyan-400 mb-1">0</div>
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border shadow-xl">
+                    <div class="text-3xl sm:text-4xl font-black text-amber-400 mb-1">0</div>
                     <div class="text-xs sm:text-sm font-semibold text-white mb-1">Τραυματισμοί</div>
-                    <div class="text-xs text-gray-400">Αυστηρά Πρωτόκολλα[cite: 5, 6]</div>
+                    <div class="text-xs text-gray-400">Αυστηρά Πρωτόκολλα</div>
                 </div>
 
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border shadow-xl">
                     <div class="text-3xl sm:text-4xl font-black text-amber-400 mb-1">15+</div>
                     <div class="text-xs sm:text-sm font-semibold text-white mb-1">Έτη Εμπειρίας</div>
-                    <div class="text-xs text-gray-400">Coach Μανώλης Ζουγανέλης[cite: 2]</div>
+                    <div class="text-xs text-gray-400">Coach Μανώλης Ζουγανέλη</div>
                 </div>
 
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border">
-                    <div class="text-3xl sm:text-4xl font-black text-cyan-400 mb-1">100%</div>
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border shadow-xl">
+                    <div class="text-3xl sm:text-4xl font-black text-amber-400 mb-1">100%</div>
                     <div class="text-xs sm:text-sm font-semibold text-white mb-1">Δομημένο Curriculum</div>
-                    <div class="text-xs text-gray-400">Active Drilling & Sparring[cite: 2, 4]</div>
+                    <div class="text-xs text-gray-400">Active Drilling & Sparring</div>
                 </div>
 
             </div>
@@ -361,70 +366,70 @@
     </section>
 
     <!-- SECTION 6: TESTIMONIALS -->
-    <section class="py-20 border-b border-brand-border">
+    <section class="py-20 border-b border-brand-border bg-brand-pitchDark">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">
                     Τι Λένε για το Επίπεδο του <span class="gold-gradient-text">Morto BJJ</span>
                 </h2>
-                <p class="text-gray-400 text-sm sm:text-base">
+                <p class="text-gray-300 text-sm sm:text-base">
                     Από διεθνείς αθλητές μέχρι ντόπιους ασκούμενους στο Ηράκλειο.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 
-                <div class="bg-brand-card rounded-2xl p-6 border border-brand-border flex flex-col justify-between">
+                <div class="bg-brand-card rounded-2xl p-6 border border-brand-border flex flex-col justify-between shadow-xl">
                     <div>
                         <div class="flex text-amber-400 text-xs mb-4">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-sm text-gray-300 italic mb-6">
-                            "Οι μαθητές που μένουν με τον Μανώλη είναι εμφανώς πιο ικανοί τεχνικά από τους αντίστοιχους σε άλλες σχολές. Το περιβάλλον είναι εξαιρετικά φιλικό."[cite: 4, 6]
+                        <p class="text-sm text-gray-200 italic mb-6">
+                            "Οι μαθητές που μένουν με τον Μανώλη είναι εμφανώς πιο ικανοί τεχνικά από τους αντίστοιχους σε άλλες σχολές. Το περιβάλλον είναι εξαιρετικά φιλικό."
                         </p>
                     </div>
                     <div class="flex items-center space-x-3 pt-4 border-t border-gray-800">
-                        <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center font-bold text-xs">
+                        <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center font-bold text-xs border border-amber-500/40">
                             BJJ
                         </div>
                         <div>
                             <div class="text-sm font-bold text-white">BJJ Reflections Blogger</div>
-                            <div class="text-xs text-gray-400">Grappling Reviewer[cite: 4]</div>
+                            <div class="text-xs text-gray-400">Grappling Reviewer</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-brand-card rounded-2xl p-6 border border-brand-border flex flex-col justify-between">
+                <div class="bg-brand-card rounded-2xl p-6 border border-brand-border flex flex-col justify-between shadow-xl">
                     <div>
                         <div class="flex text-amber-400 text-xs mb-4">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-sm text-gray-300 italic mb-6">
-                            "Εκπληκτικό τεχνικό επίπεδο διδασκαλίας και πολύ ευχάριστο κλίμα. Όσο σκληρά και να παίζουμε στο τατάμι, προσέχουμε ο ένας τον άλλον."[cite: 2, 6]
+                        <p class="text-sm text-gray-200 italic mb-6">
+                            "Εκπληκτικό τεχνικό επίπεδο διδασκαλίας και πολύ ευχάριστο κλίμα. Όσο σκληρά και να παίζουμε στο τατάμι, προσέχουμε ο ένας τον άλλον."
                         </p>
                     </div>
                     <div class="flex items-center space-x-3 pt-4 border-t border-gray-800">
-                        <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center font-bold text-xs">
+                        <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center font-bold text-xs border border-amber-500/40">
                             BB
                         </div>
                         <div>
                             <div class="text-sm font-bold text-white">4th Degree Black Belt</div>
-                            <div class="text-xs text-gray-400">Visitor from San Diego[cite: 6]</div>
+                            <div class="text-xs text-gray-400">Visitor from San Diego</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-brand-card rounded-2xl p-6 border border-brand-border flex flex-col justify-between">
+                <div class="bg-brand-card rounded-2xl p-6 border border-brand-border flex flex-col justify-between shadow-xl">
                     <div>
                         <div class="flex text-amber-400 text-xs mb-4">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-sm text-gray-300 italic mb-6">
-                            "Ξεκίνησα χωρίς καμία εμπειρία. Το δομημένο πρόγραμμα με βοήθησε να μπω στο κανονικό τμήμα χωρίς να νιώθω ότι με διαλύουν."[cite: 1, 4, 5]
+                        <p class="text-sm text-gray-200 italic mb-6">
+                            "Ξεκίνησα χωρίς καμία εμπειρία. Το δομημένο πρόγραμμα με βοήθησε να μπω στο κανονικό τμήμα χωρίς να νιώθω ότι με διαλύουν."
                         </p>
                     </div>
                     <div class="flex items-center space-x-3 pt-4 border-t border-gray-800">
-                        <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center font-bold text-xs">
+                        <div class="w-10 h-10 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center font-bold text-xs border border-amber-500/40">
                             FC
                         </div>
                         <div>
@@ -439,44 +444,44 @@
     </section>
 
     <!-- SECTION 7: PAIN POINTS & AGITATION -->
-    <section class="py-20 border-b border-brand-border bg-slate-950/40">
+    <section class="py-20 border-b border-brand-border bg-black">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-4">
-                    Γιατί οι Περισσότεροι Αρχάριοι <span class="text-red-500">Σταματούν</span> στους Πρώτους Μήνες;
+                    Γιατί οι Περισσότεροι Αρχάριοι <span class="text-amber-500">Σταματούν</span> στους Πρώτους Μήνες;
                 </h2>
-                <p class="text-gray-400 text-sm sm:text-base">
+                <p class="text-gray-300 text-sm sm:text-base">
                     Αν έχεις σκεφτεί να ξεκινήσεις BJJ αλλά διστάζεις, πιθανότατα ευθύνεται ένας από τους παρακάτω λόγους:
                 </p>
             </div>
 
             <div class="space-y-4">
-                <div class="bg-brand-card p-5 rounded-xl border border-red-900/30 flex items-start space-x-4">
-                    <div class="text-red-400 text-xl pt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+                <div class="bg-brand-card p-5 rounded-xl border border-amber-500/20 flex items-start space-x-4 shadow-md">
+                    <div class="text-amber-400 text-xl pt-1"><i class="fa-solid fa-circle-xmark"></i></div>
                     <div>
                         <h4 class="text-base font-bold text-white mb-1">Φόβος Τραυματισμού («Με διαλύουν»)</h4>
-                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
-                            Στις περισσότερες σχολές πετούν τον αρχάριο κατευθείαν στο βαθύ sparring με έμπειρους, με αποτέλεσμα τραυματισμούς και απογοήτευση[cite: 1, 4].
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                            Στις περισσότερες σχολές πετούν τον αρχάριο κατευθείαν στο βαθύ sparring με έμπειρους, με αποτέλεσμα τραυματισμούς και απογοήτευση.
                         </p>
                     </div>
                 </div>
 
-                <div class="bg-brand-card p-5 rounded-xl border border-red-900/30 flex items-start space-x-4">
-                    <div class="text-red-400 text-xl pt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+                <div class="bg-brand-card p-5 rounded-xl border border-amber-500/20 flex items-start space-x-4 shadow-md">
+                    <div class="text-amber-400 text-xl pt-1"><i class="fa-solid fa-circle-xmark"></i></div>
                     <div>
                         <h4 class="text-base font-bold text-white mb-1">Έλλειψη Δομής & Curriculum</h4>
-                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
-                            Μαθαίνεις τυχαίες τεχνικές κάθε μέρα χωρίς σύνδεση μεταξύ τους, νιώθοντας ότι δεν ξέρεις τι κάνεις ή πού βρίσκεσαι[cite: 1, 4].
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                            Μαθαίνεις τυχαίες τεχνικές κάθε μέρα χωρίς σύνδεση μεταξύ τους, νιώθοντας ότι δεν ξέρεις τι κάνεις ή πού βρίσκεσαι.
                         </p>
                     </div>
                 </div>
 
-                <div class="bg-brand-card p-5 rounded-xl border border-red-900/30 flex items-start space-x-4">
-                    <div class="text-red-400 text-xl pt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+                <div class="bg-brand-card p-5 rounded-xl border border-amber-500/20 flex items-start space-x-4 shadow-md">
+                    <div class="text-amber-400 text-xl pt-1"><i class="fa-solid fa-circle-xmark"></i></div>
                     <div>
                         <h4 class="text-base font-bold text-white mb-1">«Κανείς δεν ξέρει το όνομά μου»</h4>
-                        <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
-                            Σε απρόσωπα τμήματα 40 ατόμων, ο προπονητής δεν προλαβαίνει να σου δώσει σημασία ή να απαντήσει στις απορίες σου[cite: 1, 4].
+                        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                            Σε απρόσωπα τμήματα 40 ατόμων, ο προπονητής δεν προλαβαίνει να σου δώσει σημασία ή να απαντήσει στις απορίες σου.
                         </p>
                     </div>
                 </div>
@@ -485,47 +490,47 @@
     </section>
 
     <!-- SECTION 8: 4-WEEK ROADMAP -->
-    <section class="py-20 border-b border-brand-border">
+    <section class="py-20 border-b border-brand-border bg-brand-pitchDark">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">
                     Το Χρονοδιάγραμμα των <span class="gold-gradient-text">30 Ημερών</span>
                 </h2>
-                <p class="text-gray-400 text-sm sm:text-base">
+                <p class="text-gray-300 text-sm sm:text-base">
                     Πώς σε οδηγούμε βήμα-βήμα από το μηδέν στο πρώτο σου ασφαλές rolling.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative shadow-xl">
                     <div class="text-amber-400 font-black text-2xl mb-2">ΕΒΔ. 1-2</div>
                     <h4 class="text-base font-bold text-white mb-2">Βάσεις & Ασφάλεια</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Πτώσεις, 5 βασικές θέσεις, απεγκλωβισμοί και κανόνες ασφαλούς tap. 6 προπονήσεις & 1ο Q&A[cite: 5].
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Πτώσεις, 5 βασικές θέσεις, απεγκλωβισμοί και κανόνες ασφαλούς tap. 6 προπονήσεις & 1ο Q&A.
                     </p>
                 </div>
 
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative shadow-xl">
                     <div class="text-amber-400 font-black text-2xl mb-2">ΗΜΕΡΑ 21</div>
                     <h4 class="text-base font-bold text-white mb-2">Positional Sparring</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Ελεγχόμενο sparring από συγκεκριμένες θέσεις. 9 προπονήσεις, 3 γύροι positional χωρίς διακοπή[cite: 5].
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Ελεγχόμενο sparring από συγκεκριμένες θέσεις. 9 προπονήσεις, 3 γύροι positional χωρίς διακοπή.
                     </p>
                 </div>
 
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative shadow-xl">
                     <div class="text-amber-400 font-black text-2xl mb-2">ΗΜΕΡΑ 30</div>
                     <h4 class="text-base font-bold text-white mb-2">«Αποφοίτηση» & Rolling</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Είσοδος στο κανονικό τμήμα: 12 προπονήσεις, 5 γύροι x 5' rolling χωρίς τραυματισμούς[cite: 1, 5].
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Είσοδος στο κανονικό τμήμα: 12 προπονήσεις, 5 γύροι x 5' rolling χωρίς τραυματισμούς.
                     </p>
                 </div>
 
-                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative">
+                <div class="bg-brand-card p-6 rounded-2xl border border-brand-border relative shadow-xl">
                     <div class="text-amber-400 font-black text-2xl mb-2">ΗΜΕΡΑ 60+</div>
                     <h4 class="text-base font-bold text-white mb-2">Κανονικό Μέλος</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Ένταξη στην ακαδημία με κανονική συνδρομή (€50/μήνα) και συνεχής τεχνική εξέλιξη[cite: 1, 5].
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Ένταξη στην ακαδημία με κανονική συνδρομή (€50/μήνα) και συνεχής τεχνική εξέλιξη.
                     </p>
                 </div>
             </div>
@@ -533,17 +538,17 @@
     </section>
 
     <!-- SECTION 9: RISK REVERSAL GUARANTEE -->
-    <section class="py-20 border-b border-brand-border bg-slate-950/30">
+    <section class="py-20 border-b border-brand-border bg-black">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto bg-gradient-to-r from-amber-500/10 via-brand-card to-amber-500/10 p-8 rounded-2xl border border-amber-500/40 text-center relative overflow-hidden">
-                <div class="inline-block bg-amber-500 text-slate-950 text-xs font-black px-4 py-1 rounded-full uppercase tracking-widest mb-4">
+            <div class="max-w-4xl mx-auto bg-gradient-to-r from-amber-500/10 via-brand-card to-amber-500/10 p-8 rounded-2xl border border-amber-500/40 text-center relative overflow-hidden gold-border-glow">
+                <div class="inline-block bg-amber-500 text-black text-xs font-black px-4 py-1 rounded-full uppercase tracking-widest mb-4">
                     ΕΓΓΥΗΣΗ ΑΠΟΤΕΛΕΣΜΑΤΟΣ MORTO
                 </div>
                 <h3 class="text-2xl font-extrabold text-white mb-4">
                     «12 Προπονήσεις ή Δωρεάν Επιπλέον Υποστήριξη»
                 </h3>
-                <p class="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed mb-6">
-                    Αν ολοκληρώσεις και τις 12 προπονήσεις του Foundations 30 και την Ημέρα 30 δεν νιώθεις έτοιμος να κάνεις τους 5 γύρους rolling στο κανονικό τμήμα, σου παρέχουμε 2 επιπλέον εβδομάδες Foundations **εντελώς δωρεάν**[cite: 5, 6].
+                <p class="text-sm sm:text-base text-gray-200 max-w-2xl mx-auto leading-relaxed mb-6">
+                    Αν ολοκληρώσεις και τις 12 προπονήσεις του Foundations 30 και την Ημέρα 30 δεν νιώθεις έτοιμος να κάνεις τους 5 γύρους rolling στο κανονικό τμήμα, σου παρέχουμε 2 επιπλέον εβδομάδες Foundations **εντελώς δωρεάν**.
                 </p>
                 <div class="text-xs text-amber-400 font-semibold">&bull; ΜΗΔΕΝΙΚΟ ΡΙΣΚΟ &bull; ΔΟΜΗΜΕΝΟ CURRICULUM &bull; ΠΡΟΣΩΠΙΚΗ ΠΡΟΣΟΧΗ &bull;</div>
             </div>
@@ -551,31 +556,32 @@
     </section>
 
     <!-- SECTION 10: FINAL CTA & FOOTER -->
-    <section class="py-20 relative">
+    <section class="py-20 relative bg-brand-pitchDark">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl sm:text-5xl font-black text-white mb-6">
                 Έτοιμος να Ξεκινήσεις <span class="gold-gradient-text">Jiu-Jitsu με Ασφάλεια;</span>
             </h2>
-            <p class="text-gray-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
-                Κλείσε τη δωρεάν πρώτη σου δοκιμαστική προπόνηση και εξασφάλισε μία από τις 10 θέσεις του Οκτωβρίου[cite: 1, 5, 6].
+            <p class="text-gray-200 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+                Κλείσε τη δωρεάν πρώτη σου δοκιμαστική προπόνηση και εξασφάλισε μία από τις 10 θέσεις του Οκτωβρίου.
             </p>
 
-            <button onclick="openModal()" class="px-10 py-5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xl rounded-xl shadow-2xl shadow-amber-500/30 transform hover:-translate-y-1 transition duration-200 inline-flex items-center space-x-3">
+            <!-- Calendar Link Button -->
+            <a href="https://calendar.app.google/nR5ema51rURQ9ZBdA" target="_blank" rel="noopener noreferrer" class="px-10 py-5 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-black text-xl rounded-xl shadow-2xl shadow-amber-500/30 transform hover:-translate-y-1 transition duration-200 inline-flex items-center space-x-3 border border-amber-300">
                 <span>ΚΛΕΙΣΕ ΔΩΡΕΑΝ ΔΟΚΙΜΑΣΤΙΚΟ</span>
                 <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            </a>
 
-            <p class="text-xs text-gray-400 mt-4">&bull; ΧΩΡΙΣ ΚΑΜΙΑ ΔΕΣΜΕΥΣΗ &bull; ΠΕΡΙΟΡΙΣΜΕΝΕΣ ΘΕΣΕΙΣ &bull;</p>
+            <p class="text-xs text-gray-400 mt-6">&bull; ΧΩΡΙΣ ΚΑΜΙΑ ΔΕΣΜΕΥΣΗ &bull; ΠΕΡΙΟΡΙΣΜΕΝΕΣ ΘΕΣΕΙΣ &bull;</p>
         </div>
 
         <footer class="mt-20 border-t border-brand-border pt-8 text-center text-xs text-gray-400">
-            <p>&copy; 2026 Morto BJJ Heraklion. All Rights Reserved. &bull; In collaboration with Katheto.gr[cite: 1]</p>
+            <p>&copy; 2026 Morto BJJ Heraklion. All Rights Reserved. &bull; In collaboration with Katheto.gr</p>
         </footer>
     </section>
 
-    <!-- LEAD CAPTURE MODAL -->
-    <div id="lead-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden">
-        <div class="bg-brand-card border border-amber-500/40 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative">
+    <!-- LEAD CAPTURE MODAL (OPTIONAL BACKUP FORM) -->
+    <div id="lead-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm hidden">
+        <div class="bg-brand-card border border-amber-500/50 rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative gold-border-glow">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -583,31 +589,31 @@
             <div class="text-center mb-6">
                 <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">MOMENTUM FORM</span>
                 <h3 class="text-xl font-bold text-white mt-1">Αίτηση για Foundations 30</h3>
-                <p class="text-xs text-gray-400 mt-1">Συμπλήρωσε τα στοιχεία σου για τη δωρεάν δοκιμαστική προπόνηση[cite: 1, 12].</p>
+                <p class="text-xs text-gray-400 mt-1">Συμπλήρωσε τα στοιχεία σου για τη δωρεάν δοκιμαστική προπόνηση.</p>
             </div>
 
             <form onsubmit="handleFormSubmit(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 mb-1">ΟΝΟΜΑΤΕΠΩΝΥΜΟ</label>
-                    <input type="text" required placeholder="π.χ. Γιώργος Παπαδόπουλος" class="w-full px-4 py-3 bg-slate-900 border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
+                    <input type="text" required placeholder="π.χ. Γιώργος Παπαδόπουλος" class="w-full px-4 py-3 bg-black border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 mb-1">ΤΗΛΕΦΩΝΟ (WHATSAPP / MOBILE)</label>
-                    <input type="tel" required placeholder="69XXXXXXXX" class="w-full px-4 py-3 bg-slate-900 border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
+                    <input type="tel" required placeholder="69XXXXXXXX" class="w-full px-4 py-3 bg-black border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 mb-1">ΑΘΛΗΤΙΚΟ BACKGROUND</label>
-                    <input type="text" placeholder="π.χ. Γυμναστήριο, Ποδόσφαιρο, Κανένα" class="w-full px-4 py-3 bg-slate-900 border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
+                    <input type="text" placeholder="π.χ. Γυμναστήριο, Ποδόσφαιρο, Κανένα" class="w-full px-4 py-3 bg-black border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 mb-1">ΕΙΣΑΙ ΦΟΙΤΗΤΗΣ;</label>
-                    <select id="student-select" class="w-full px-4 py-3 bg-slate-900 border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
+                    <select id="student-select" class="w-full px-4 py-3 bg-black border border-brand-border rounded-xl text-white text-sm focus:outline-none focus:border-amber-500">
                         <option value="no">Όχι, Εργαζόμενος / Άλλο</option>
                         <option value="yes">Ναι (ΕΛΜΕΠΑ / Πανεπιστήμιο Κρήτης)</option>
                     </select>
                 </div>
 
-                <button type="submit" class="w-full py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-base rounded-xl shadow-lg transition duration-200 mt-2">
+                <button type="submit" class="w-full py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-black text-base rounded-xl shadow-lg transition duration-200 mt-2">
                     ΚΑΤΑΧΩΡΙΣΗ & ΚΡΑΤΗΣΗ ΘΕΣΗΣ
                 </button>
             </form>
@@ -637,7 +643,7 @@
             const deliverablesList = document.getElementById('deliverables-list');
 
             if (type === 'one-time') {
-                btnOneTime.className = "px-5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all duration-200 bg-amber-500 text-slate-950";
+                btnOneTime.className = "px-5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all duration-200 bg-amber-500 text-black";
                 btnMonthly.className = "px-5 py-2 text-xs sm:text-sm font-bold rounded-lg text-gray-400 hover:text-white transition-all duration-200";
                 packageTitle.textContent = "Morto Foundations 30";
                 priceDisplay.textContent = "€69";
@@ -650,7 +656,7 @@
                     <li class="flex items-start"><i class="fa-solid fa-circle-check text-amber-400 mt-1 mr-3 flex-shrink-0"></i><span><strong>Δωρεάν Πρώτη Δοκιμαστική Προπόνηση:</strong> Αξιολόγηση αθλητικής ετοιμότητας και γνωριμία με την ομάδα (Αξία €15).</span></li>
                 `;
             } else {
-                btnMonthly.className = "px-5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all duration-200 bg-amber-500 text-slate-950";
+                btnMonthly.className = "px-5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all duration-200 bg-amber-500 text-black";
                 btnOneTime.className = "px-5 py-2 text-xs sm:text-sm font-bold rounded-lg text-gray-400 hover:text-white transition-all duration-200";
                 packageTitle.textContent = "Morto Student Semester";
                 priceDisplay.textContent = "€169";
@@ -689,7 +695,7 @@
             document.body.removeChild(dummy);
             
             const toast = document.createElement('div');
-            toast.className = 'fixed bottom-5 right-5 z-50 bg-amber-500 text-slate-950 px-6 py-3 rounded-xl font-bold shadow-2xl transition duration-300';
+            toast.className = 'fixed bottom-5 right-5 z-50 bg-amber-500 text-black px-6 py-3 rounded-xl font-bold shadow-2xl transition duration-300 border border-white';
             toast.textContent = '✓ Το HTML code αντιγράφηκε επιτυχώς!';
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 3000);
